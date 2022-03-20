@@ -157,7 +157,7 @@ EMAIL_HOST_PASSWORD =  os.environ.get('EMAIL_PASSWORD')
 # EMAIL_HOST_USER = 'c960728220a834'
 # EMAIL_HOST_PASSWORD = '17820178e266ed'
 # EMAIL_PORT = '2525'
-###### maitltrp test ####
+###### maitltrp test #####
 
 SERVER_EMAIL = 'jctech@jctech.xyz'
 DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL')
