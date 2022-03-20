@@ -146,11 +146,19 @@ LOGIN_URL = 'login'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
-# EMAIL_HOST = 'email-smtp.us-east-1.amazonaws.com'
-# EMAIL_PORT = '587'
-# EMAIL_USE_TLS = 'True'
-# EMAIL_HOST_USER = os.environ.get('EMAIL_USERNAME')
-# EMAIL_HOST_PASSWORD =  os.environ.get('EMAIL_PASSWORD')
+EMAIL_HOST = 'email-smtp.us-east-1.amazonaws.com'
+EMAIL_PORT = '587'
+EMAIL_USE_TLS = 'True'
+EMAIL_HOST_USER = os.environ.get('EMAIL_USERNAME')
+EMAIL_HOST_PASSWORD =  os.environ.get('EMAIL_PASSWORD')
+
+###### maitltrp test ####
+# EMAIL_HOST = 'smtp.mailtrap.io'
+# EMAIL_HOST_USER = 'c960728220a834'
+# EMAIL_HOST_PASSWORD = '17820178e266ed'
+# EMAIL_PORT = '2525'
+###### maitltrp test ####
+
 SERVER_EMAIL = 'jctech@jctech.xyz'
 DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL')
 
