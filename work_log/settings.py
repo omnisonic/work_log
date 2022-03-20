@@ -22,12 +22,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-o&4epvbc2t5ginw*xezi2c(c@563uvvd3%g#5m8(g$xwvrn95%'
+# SECRET_KEY = 'django-insecure-o&4epvbc2t5ginw*xezi2c(c@563uvvd3%g#5m8(g$xwvrn95%'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['jctech-log.herokuapp.com', 'localhost']
 
 
 # Application definition
@@ -43,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'storages'
 ]
 
 MIDDLEWARE = [
@@ -148,8 +150,19 @@ EMAIL_HOST = 'smtp.email-smtp.us-east-1.amazonaws.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 # EMAIL_USE_SSL = True
-EMAIL_HOST_USER = os.environ.get('amzn_smtp_password')
-EMAIL_HOST_PASSWORD =  os.environ.get('amzn_smtp_username')
+EMAIL_HOST_USER = os.environ.get('EMAIL_USERNAME')
+EMAIL_HOST_PASSWORD =  os.environ.get('EMAIL_PASSWORD')
 
 
-# openssl s_client -crlf -quiet -starttls smtp -connect email-smtp.us-east-1.amazonaws.com:587
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
+
+AWS_S3_FILE_OVERWITE = False
+AWS_DEFAULT_ACL = None
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+AWS_S3_REGION_NAME = 'us-east-1' # Your region name 
+AWS_S3_SIGNATURE_VERSION = 's3v4' 
+AWS_S3_ADDRESSING_STYLE = 'virtual'
