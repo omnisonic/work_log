@@ -27,7 +27,10 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-DEBUG = os.environ(['DEBUG'] == 'TRUE')
+#os.environ.get('DEFAULT_FROM_EMAIL')
+
+
+DEBUG = os.environ.get(['DEBUG'] == 'TRUE')
 ALLOWED_HOSTS = ['jctech-log.herokuapp.com']
 
 
