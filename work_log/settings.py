@@ -152,7 +152,7 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER =  os.environ.get('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD =  os.environ.get('EMAIL_HOST_PASSWORD')
 
-###### maitltrp test ####
+###### maitltrp test #####
 # EMAIL_HOST = 'smtp.mailtrap.io'
 # EMAIL_HOST_USER = 'c960728220a834'
 # EMAIL_HOST_PASSWORD = '17820178e266ed'
