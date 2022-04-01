@@ -9,6 +9,8 @@ from django.views.generic import (
     DeleteView,
     )
 
+from django.views.generic.dates import MonthArchiveView
+
 from .models import Post
 # from django.http import HttpResponse
     
@@ -19,16 +21,21 @@ def home(request):
 
     return render(request, 'blog/home.html', context)
 
-class PostListView(ListView):
+class PostListView(LoginRequiredMixin, ListView):  #added LoginRequiredMixin to make login required
     model = Post
     template_name = 'blog/home.html' # <app>/<model>_<veiwtype.html>
     context_object_name = 'posts'
     ordering = ['-date_posted']
     paginate_by = 5
 
+# month, from documentation
+class PostMonthArchiveView(LoginRequiredMixin, MonthArchiveView):
+    queryset = Post.objects.all()
+    date_field = "date_posted"
+    allow_future = True
 
 
-class UserPostListView(ListView):
+class UserPostListView(LoginRequiredMixin, ListView): #added LoginRequiredMixin to make login required
     model = Post
     template_name = 'blog/user_posts.html' # <app>/<model>_<veiwtype.html>
     context_object_name = 'posts'

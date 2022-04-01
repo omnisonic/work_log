@@ -3,9 +3,11 @@ from .views import (
     PostListView, 
     PostDetailView,
     PostCreateView,
+    PostMonthArchiveView,
     PostUpdateView,
     PostDeleteView,
-    UserPostListView
+    UserPostListView,
+    PostMonthArchiveView
 )
 from . import views
 
@@ -17,6 +19,7 @@ urlpatterns = [
     path('post/<int:pk>/update', PostUpdateView.as_view(), name='post-update'),
     path('post/<int:pk>/delete/', PostDeleteView.as_view(), name='post-delete'),
     path('about/', views.about, name='blog-about'),
+    path('<int:year>/<int:month>/', PostMonthArchiveView.as_view(month_format='%m'), name="archive_month_numeric"),
 
 ]
 
