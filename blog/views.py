@@ -1,6 +1,8 @@
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
+from django.db.models import Sum
+
 from django.views.generic import (
     ListView, 
     DetailView,
@@ -32,7 +34,15 @@ class PostListView(LoginRequiredMixin, ListView):  #added LoginRequiredMixin to 
 class PostMonthArchiveView(LoginRequiredMixin, MonthArchiveView):
     queryset = Post.objects.all()
     date_field = "date_posted"
-    allow_future = True
+    allow_future = False
+    
+# https://stackoverflow.com/questions/42696048/get-queryset-in-montharchiveview-returns-all-objects-instead-objects-created-o
+
+    def get_context_data(self, *args, **kwargs,):
+        context = super().get_context_data( **kwargs)
+        month = self.get_month()
+        context['total_hours'] = self.queryset.filter(author=self.request.user).filter(date_posted__month=month).aggregate(Sum('hours_worked')).get('hours_worked__sum')
+        return context
 
 
 class UserPostListView(LoginRequiredMixin, ListView): #added LoginRequiredMixin to make login required
@@ -62,7 +72,7 @@ class PostCreateView(LoginRequiredMixin, CreateView):
 
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Post
-    fields = ['title', 'content' ]
+    fields = ['title', 'content','screen_shot' ]
 
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -85,3 +95,16 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 def about(request):
     return render(request, 'blog/about.html', {'title':'About'})
+
+
+
+# class Hours(MonthArchiveView):
+
+#     def get(self, *args, **kwargs):
+#        sum_a = Post.objects.aggregate(Sum('hours_worked')).filter(user=self.request.user)
+
+#        context = {
+#            'sum_a':sum_a,
+
+#        }
+#        return render(self.request, 'post_archive_month.html', context)

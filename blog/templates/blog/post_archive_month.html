@@ -8,9 +8,9 @@ logged as {{ user.username }}
     {% for post in object_list %}
     {% comment %} post.author by itself is not equal to user.username {% endcomment %}
         {% if post.author.username == user.username %}   
-        <li>{{ post.date_posted|date:"F j, Y" }}: {{ post.title }} - {{ post.author }}  </li>
-            {% else %}
-                <p> You have no posts in this time period.</p>
+        <li>{{ post.date_posted|date:"F j, Y" }}: {{ post.title }} - {{ post.author }} - hours: {{post.hours_worked}} </li>
+            {% comment %} {% else %}
+                <p> You have no posts in this time period.</p> {% endcomment %}
             {% endif %}
     {% endfor %}
 
@@ -47,6 +47,9 @@ logged as {{ user.username }}
       {% endif %}
 
     {% endif %}
+
+
+    <p> Total for hours for the Month: {{ total_hours }} <p>
 
 {% endblock content %}
 
