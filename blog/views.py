@@ -35,17 +35,23 @@ class PostMonthArchiveView(LoginRequiredMixin, MonthArchiveView):
     queryset = Post.objects.all()
     date_field = "date_posted"
     allow_future = False
+
+    def get_queryset(self):
+        user = get_object_or_404(User, username=self.kwargs.get('username'))
+        return Post.objects.filter(author=user).order_by('-date_posted')
     
 # https://stackoverflow.com/questions/42696048/get-queryset-in-montharchiveview-returns-all-objects-instead-objects-created-o
 
     def get_context_data(self, *args, **kwargs,):
+        user = get_object_or_404(User, username=self.kwargs.get('username'))
         context = super().get_context_data( **kwargs)
         month = self.get_month()
-        context['total_hours'] = self.queryset.filter(author=self.request.user).filter(date_posted__month=month).aggregate(Sum('hours_worked')).get('hours_worked__sum')
+        context['total_hours'] = self.queryset.filter(author=user).filter(date_posted__month=month).aggregate(Sum('hours_worked')).get('hours_worked__sum')
+        # context['total_hours'] = self.queryset.filter(author=self.request.user).filter(date_posted__month=month).aggregate(Sum('hours_worked')).get('hours_worked__sum')
         return context
 
 
-class UserPostListView(LoginRequiredMixin, ListView): #added LoginRequiredMixin to make login required
+class UserPostListView(LoginRequiredMixin, ListView, MonthArchiveView): #added LoginRequiredMixin to make login required
     model = Post
     template_name = 'blog/user_posts.html' # <app>/<model>_<veiwtype.html>
     context_object_name = 'posts'
