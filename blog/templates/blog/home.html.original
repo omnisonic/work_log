@@ -1,32 +1,21 @@
 {% extends "blog/base.html" %}
 {% block content %}
 
+    {% for post in posts %}
 
-<div class="text-light">
-logged as {{ user.username }}
-<ul>
-
-
-    {% for post in object_list %}
-    {% comment %} post.author by itself is not equal to user.username {% endcomment %}
-        {% if post.author.username == user.username %}   
-        <li>{{ post.date_posted|date:"F j, Y" }}: {{ post.title }} - {{ post.author }} - hours: {{post.hours_worked}} </li>
-            {% comment %} {% else %}
-                <p> You have no posts in this time period.</p> {% endcomment %}
-            {% endif %}
+    <article class="media content-section">
+        <img  class="rounded-circle article-img" src="{{ post.author.profile.image.url }}">
+        <div class="media-body">
+          <div class="article-metadata">
+            <a class="mr-2" href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a>
+            <small class="text-muted">{{ post.date_posted | date:"F d, Y" }}</small>
+          </div>
+          <h2><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
+          <p class="article-content">{{ post.content }}</p>
+          <p> {{post.hours_worked}} Hours </p>
+        </div>
+      </article>
     {% endfor %}
-
-</ul>
-
-<p>
-    {% if previous_month %}
-        Previous Month: {{ previous_month|date:"F Y" }}
-    {% endif %}
-    {% if next_month %}
-        Next Month: {{ next_month|date:"F Y" }}
-    {% endif %}
-</p>
-
 
     {% if is_paginated %}
 
@@ -50,9 +39,6 @@ logged as {{ user.username }}
 
     {% endif %}
 
-
-    <p> Total for hours for the Month: {{ total_hours }} <p>
-
 {% endblock content %}
 
-<div>
+
