@@ -14,7 +14,14 @@
           <p class="article-content">{{ post.content }}</p>
 
           <div class="media">
-        <img class="rounded-circle account-img" src="{{ post.screen_shot.url }}">
+        <!-- <img class="account-img" src="{{ post.screen_shot.url }}"> -->
+
+<!-- screen shot link open in new tab -->
+<a href="{{ post.screen_shot.url }}" target="_blank">
+  <img alt='View Image in new tab' class='img-40 rounded-circle' src='IMAGE_URL' />
+</a>
+
+
         <div class="media-body">
         </div>
       </article>

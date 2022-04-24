@@ -16,6 +16,9 @@
           
           <h2><a class="article-title text-light" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
           <p class="article-content text-light">{{ post.content }}</p>
+          <a class="text-light" href="{{ post.screen_shot.url }}" target="_blank"> View post image in new tab
+  <!-- <img alt='View Image' class='img-40 rounded-circle' src='{{ post.screen_shot.url }}' /> -->
+</a>
         </div>
       </article>
     {% endif %}

@@ -16,6 +16,9 @@
           </div>
           <h2 class="article-title"> {{ object.title }}</h2>
           <p class="article-content">{{ object.content }}</p>
+          <a  href="{{ post.screen_shot.url }}" target="_blank"> View post image in new tab
+            <!-- <img alt='View Image' class='img-40 rounded-circle' src='{{ post.screen_shot.url }}' /> -->
+          </a>
           <p >Hours Worked: {{post.hours_worked}} </p>
         </div>
       </article>

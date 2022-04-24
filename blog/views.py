@@ -67,7 +67,7 @@ class PostDetailView(DetailView):
 
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
-    fields = ['content','hours_worked' ]
+    fields = ['title','content','hours_worked','screen_shot' ]
     # fields = ['title', 'content','hours_worked','screen_shot' ]
 
     def form_valid(self, form):
