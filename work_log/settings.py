@@ -30,7 +30,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 #os.environ.get('DEFAULT_FROM_EMAIL')
 
 
-DEBUG = False
+DEBUG = True
 ALLOWED_HOSTS = ['jctech-log.herokuapp.com']
 
 
@@ -149,6 +149,8 @@ LOGIN_URL = 'login'
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+MAILER_EMAIL_BACKEND = EMAIL_BACKEND
+
 
 EMAIL_HOST = 'email-smtp.us-east-1.amazonaws.com'
 EMAIL_PORT = 587
