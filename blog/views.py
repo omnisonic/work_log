@@ -32,8 +32,8 @@ class PostListView(LoginRequiredMixin, ListView):  #added LoginRequiredMixin to 
     ordering = ['-date_posted']
     paginate_by = 15
     
-    def get_queryset(self):
-        return Post.objects.filter(author=self.request.user).order_by('-date_posted')  #self.request.user to get the current user  and filter all the post by that user.  so only logged in user post on the first page.
+    # def get_queryset(self):
+    #     return Post.objects.filter(author=self.request.user).order_by('-date_posted')  #self.request.user to get the current user  and filter all the post by that user.  so only logged in user post on the first page.
 
         
 
