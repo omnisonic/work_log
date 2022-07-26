@@ -35,10 +35,15 @@ def new_post_notification_email(sender, instance, created, **kwargs):
         hours = instance.hours_worked
         subject = f'New log Entry created by {instance.author} '# Todo: add author name.
         message = 'A new post has been created!\n' # Todo: add link to post, and author, and date, and hours worked, content.
+        # Todo: variable for the link. 
+        link = "http://log.jctech.xyz/post/" + str(instance.id)
+       
         message += "Author: " + str(name) + "\n"
         message += "Date: " + str(date) + "\n"
         message += "Hours Worked: " + str(hours) + "\n"
         message += "Content: " + str(content) + "\n"
+        # Todo: link to user post.  message += "Link: " + <a class="article-title text-light" href="{% url 'post-detail' post.id %}">{{ post.title }}</a>
+        message += "Link: " + str(link) + "\n"
 
         send_mail(
             subject,
