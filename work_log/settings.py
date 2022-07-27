@@ -32,6 +32,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 
 DEBUG = True
 ALLOWED_HOSTS = ['jctech-log.herokuapp.com','log.jctech.xyz']
+CSRF_TRUSTED_ORIGINS = ['https://log.jctech.xyz']
 
 
 # Application definition
