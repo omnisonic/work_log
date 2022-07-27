@@ -30,8 +30,8 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 #os.environ.get('DEFAULT_FROM_EMAIL')
 
 
-DEBUG = False
-ALLOWED_HOSTS = ['jctech-log.herokuapp.com']
+DEBUG = True
+ALLOWED_HOSTS = ['jctech-log.herokuapp.com','log.jctech.xyz']
 
 
 # Application definition
