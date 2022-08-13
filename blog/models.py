@@ -14,7 +14,7 @@ class Post(models.Model):
     content = models.TextField()
     date_posted = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    hours_worked = models.DecimalField(default=0.0,max_digits=2, decimal_places=1)
+    hours_worked = models.DecimalField(default=2.0,max_digits=2, decimal_places=1)
     screen_shot = models.ImageField(default='default.jpg',upload_to='screen_shots/')
 
     def __str__(self):

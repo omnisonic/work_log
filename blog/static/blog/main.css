@@ -29,7 +29,7 @@ body {
   }
   
   .content-section {
-    background: #ffffff;
+    background: #5f788a;
     padding: 10px 20px;
     border: 1px solid #dddddd;
     border-radius: 3px;
@@ -87,4 +87,14 @@ body {
 .row {
 
 	margin-top: 100px;
+}
+
+fieldset {
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+a { 
+  color: #0000ee
+
 }

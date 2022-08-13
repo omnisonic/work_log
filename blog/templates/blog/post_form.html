@@ -6,6 +6,8 @@
         {% csrf_token %}
         <fieldset class="form-group bg-steel">
             <legend class="border-bottom mb-4 bg-steel">Work Log</legend>
+            <notice> ***Please log only the hours you need, no more than 4 per day.  The whole team thanks you.</notice><hr>
+
             {{ form|crispy }}
         </fieldset>
         <div class="form-group bg-steel">
